@@ -1,5 +1,5 @@
--- Lists all bands with Glam rock as their main style, ranked by their longevity.
-SELECT band_name, (IFNULL(split, '2020') - formed) AS lifespan
-FROM metal_bands
-WHERE IFNULL(style, "") LIKE '%Glam rock%'
-ORDER BY lifespan DESC;
+-- Ranks the countries by their number of fans.
+SELECT origin, SUM(fans) AS nb_fans
+    FROM metal_bands
+    GROUP BY origin
+    ORDER BY nb_fans DESC;
