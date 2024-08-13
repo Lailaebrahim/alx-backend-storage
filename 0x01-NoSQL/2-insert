@@ -1,2 +1,4 @@
+root@bff9caa16af4:/alx-backend-storage/0x01-NoSQL# cat > 2-insert
 // script that inserts a document in the collection school
+db.createCollection("school")
 db.school.insertOne({name: "Holberton school"})
