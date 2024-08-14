@@ -79,4 +79,3 @@ def replay(method):
         input_str = input_data.decode('utf-8')
         output_str = output_key.decode('utf-8')
         print(f"{method.__qualname__}(*({input_str},)) -> {output_str}")
-  
