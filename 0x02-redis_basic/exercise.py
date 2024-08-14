@@ -9,10 +9,10 @@ store the input data in Redis using the random key and return the key.
 import redis
 import uuid
 import functools
-from typing import Union, Any
+from typing import Union, Any, Callable
 
 
-def count_calls(method: callable) -> callable:
+def count_calls(method: Callable) -> Callable:
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs) -> Any:
         '''returns the given method after incrementing its call counter.
@@ -21,7 +21,6 @@ def count_calls(method: callable) -> callable:
             self._redis.incr(method.__qualname__)
         return method(self, *args, **kwargs)
     return wrapper
-  
 
 class Cache:
   def __init__(self):
