@@ -3,14 +3,12 @@
 
 
 def schools_by_topic(mongo_collection, topic):
-    """
-    Changes all topics of a school document based on the name.
+        """
+    Returns the list of schools having a specific topic.
 
     :param mongo_collection: pymongo collection object
-    :param name: string, the school name to update
-    :param topics: list of strings, the list of topics approached in the school
+    :param topic: string, the topic to search for
+    :return: list of schools (documents) that have the specified topic
     """
-    result = mongo_collection.find({"topics": topics})
-
-    return result
-
+    schools = list(mongo_collection.find({"topics": topic}))
+    return schools
