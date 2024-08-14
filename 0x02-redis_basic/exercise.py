@@ -68,3 +68,15 @@ class Cache:
   def get_int(self, key: str) -> int:
     return self.get(key, int)
   
+
+def replay(method):
+    cache = method.__self__
+    inputs = cache.redis.lrange(cache.store_inputs, 0, -1)
+    outputs = cache.redis.lrange(cache.store_outputs, 0, -1)
+
+    print(f"{method.__qualname__} was called {len(inputs)} times:")
+    for input_data, output_key in zip(inputs, outputs):
+        input_str = input_data.decode('utf-8')
+        output_str = output_key.decode('utf-8')
+        print(f"{method.__qualname__}(*({input_str},)) -> {output_str}")
+  
